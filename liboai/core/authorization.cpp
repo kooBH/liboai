@@ -96,9 +96,24 @@ bool liboai::Authorization::SetKeyEnv(std::string_view var) noexcept {
 			this->openai_auth_headers_["Authorization"] = ("Bearer " + this->key_);
 			return true;
 		}
+	  printf("liboai::Authorization::SetKeyEnv::null key\n");
 		return false;
 	}
+	printf("liboai::Authorization::SetKeyEnv::no var\n");
 	return false;
+}
+
+bool liboai::Authorization::SetKey(const char* key) noexcept {
+		if (key != nullptr) {
+			this->key_ = key;
+			if (this->openai_auth_headers_.count("Authorization") > 0) {
+				this->openai_auth_headers_.erase("Authorization");
+			}
+			this->openai_auth_headers_["Authorization"] = ("Bearer " + this->key_);
+			return true;
+		}
+		printf("liboai::Authorization::SetKeyEnv::null key\n");
+		return false;
 }
 
 bool liboai::Authorization::SetAzureKeyEnv(std::string_view var) noexcept {

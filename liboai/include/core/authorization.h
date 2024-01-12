@@ -108,6 +108,9 @@ namespace liboai {
 			[[nodiscard]]
 			LIBOAI_EXPORT bool SetKeyEnv(std::string_view var) noexcept;
 
+			[[nodiscard]]
+			LIBOAI_EXPORT bool SetKey(const char*key) noexcept;
+
 			/*
 				@brief Sets the authorization key for the Azure OpenAI API
 					as the value stored in the environment variable with
